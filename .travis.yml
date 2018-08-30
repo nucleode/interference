@@ -1,13 +1,17 @@
 language: node_js
 node_js:
-  - "6"
-  - "8"
-  - "10"
-
-# Only build tags
+- '6'
+- '8'
+- '10'
 if: tag IS present
-
-# Safelist
 branches:
   only:
-  - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+  - "/^v\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+deploy:
+  provider: npm
+  email: kapa89@me.com
+  api_key:
+    secure: sjdtfGNf4aIFx3q1imgEtiqsgIUcGeHeNIjVthhcsBbjvQyPsbUqyTTt59hHxCKqU6VZ4sidU1p5I/a4+LgWQT2LqLS7rcNdTVdRRTx0Vd7/6mNIAWU6g07zyrCDrCpvaPo6A752z6gwm/qSlWLs/o3tjlgbr37Jomu7WDHzBVUmcritO/1COqji84f56Fp5HLEfTG7q/2VEp/A4xWM7PVPVV7jtcjR5FcelTbSWX4jL5DkhfH8QGIyCnaq31+EOE4irOPXLOieMqC0FS9ReDlvoPuFHXts4oqqu/9F5O6qUU1rc+/qpOCEazEQO5z1qX+60cb+ZSU+tN7LJk4cCsdIsrp3AELDDNFhU+l1M2iiX0GWMhRTgdTKgsuGqqpQfj8t1A4EFBP8XFJ9/OinmY4tiPMt960D1gKa0fveck7Io8L60ijjzrkpq0whAOrB6jAUjqwFkQZwxaDVdUKS4Y0+UeizaW1G6Ja5B0uaR4sY24zoqAdtQ3mnsRR2RLMhQ9RoroxYYJQuF5ghFovGRB08d/pE80NDg5NJ9cKM4MLaa7KtGa6eTpD8kRLaEsPDGn8q8WC+iOs5eG7x7oTrcMJOHNh/ogkUv15FVx5EU62GrZEIkY4DI4NstQDA7oDRmAZRcZLhNO020kogHbwkeiyPUPNuCfU6AyEDpI3sqlQw=
+  on:
+    tags: true
+    repo: nucleode/interference
