@@ -23,6 +23,10 @@ npm install interference
 
 ## Usage
 
+```javascript
+import Interference from 'interference' // or const Interference = require('interference').default
+```
+
 <b>Factory</b>
 ```javascript
 (message: string, type?: string, details?: any, code?: number): Interference
