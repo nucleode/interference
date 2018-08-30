@@ -17,12 +17,7 @@ class InterferenceError extends Error implements Interference {
   details: any
   message: string
 
-  constructor(
-    message: string,
-    type: string = 'GENERIC_ERROR',
-    details: any = {},
-    code: number = 500,
-  ) {
+  constructor(message: string, type: string = 'GENERIC_ERROR', details: any = {}, code?) {
     super(message)
 
     Object.defineProperty(this, 'message', {
@@ -41,7 +36,7 @@ class InterferenceError extends Error implements Interference {
 
     this.type = type
     this.details = details
-    this.statusCode = httpCodes[code] || code
+    this.statusCode = code || httpCodes[type] || 500
 
     if (Error.hasOwnProperty('captureStackTrace')) {
       Error.captureStackTrace(this, this.constructor)

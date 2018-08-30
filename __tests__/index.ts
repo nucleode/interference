@@ -59,7 +59,7 @@ test('Interference with all but "code" set', () => {
   expect(error.message).toBe('Duplicated document')
   expect(error.type).toBe('DUPLICATED_DOCUMENT')
   expect(error.details.dupe).toBe('4350394')
-  expect(error.statusCode).toBe(500)
+  expect(error.statusCode).toBe(409)
 })
 
 test('Interference with custom "code"', () => {
