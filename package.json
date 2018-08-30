@@ -11,7 +11,8 @@
     "prettier": "prettier --loglevel warn --write \"src/**/*.{ts,tsx}\"",
     "prelint": "npm run prettier",
     "lint": "tslint --fix -c tslint.json -t stylish -p ./tsconfig.json",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
