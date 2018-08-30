@@ -3,3 +3,11 @@ node_js:
   - "6"
   - "8"
   - "10"
+
+# Only build tags
+if: tag IS present
+
+# Safelist
+branches:
+  only:
+  - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
