@@ -11,7 +11,7 @@ interface Codes {
 
 let httpCodes: Codes = {}
 
-class Interference extends Error implements Interference {
+class InterferenceError extends Error implements Interference {
   type: string
   statusCode: number
   details: any
@@ -57,8 +57,10 @@ class Interference extends Error implements Interference {
   }
 }
 
-export default (message: string, type?: string, details?: any, code?: number): Interference =>
-  new Interference(message, type, details, code)
+const Interference = (message: string, type?: string, details?: any, code?: number): Interference =>
+  new InterferenceError(message, type, details, code)
+
+export default Interference
 
 export const InjectCodes = (codes?: Codes) => {
   if (codes) {
