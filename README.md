@@ -9,7 +9,7 @@
 [![NPM version](https://img.shields.io/npm/v/interference.svg?style=flat)](https://www.npmjs.com/package/interference)
 [![Build Status](  https://travis-ci.org/nucleode/interference.svg?branch=master)](https://travis-ci.org/nucleode/interference)
 [![NPM downloads](https://img.shields.io/npm/dm/interference.svg?style=flat)](https://www.npmjs.com/package/interference) 
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![Greenkeeper badge](https://badges.greenkeeper.io/nucleode/interference.svg)](https://greenkeeper.io/)
 
 </div>
 
