@@ -1,6 +1,6 @@
 {
   "name": "interference",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "description": "Custom error factory for microservices with http code and \"internal\" code props",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
