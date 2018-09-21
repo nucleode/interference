@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "target": "es2017",
+    "declaration": true,
+    "target": "es5",
     "module": "commonjs",
-    "outDir": "build",
+    "outDir": "lib",
     "rootDir": "./src",
     "pretty": true,
     "noEmitOnError": true,
@@ -14,12 +15,19 @@
     "esModuleInterop": true,
     "removeComments": true,
     "noUnusedLocals": true,
-    "declaration": true
+    "lib": [
+      "es2018"
+    ],
   },
   "formatCodeOptions": {
     "identSize": 2,
     "tabSize": 2
   },
-  "exclude": ["node_modules", "__tests__"],
-  "include": ["**/*.ts"]
+  "exclude": [
+    "node_modules",
+    "__tests__"
+  ],
+  "include": [
+    "**/*.ts"
+  ]
 }
