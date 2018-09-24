@@ -40,7 +40,7 @@ InjectCodes({
     EMPTY_DOCUMENT: 400,
     DOCUMENT_VALIDATION_ERROR: 400,
     MISSING_UNIQUE_KEY: 400,
-    MISSINMISSING_AUTH_DATA: 400,
+    MISSING_AUTH_DATA: 400,
     CREDENTIALS_NOT_VALID: 400,
     MISSING_MANDATORY_PRAMETER: 400,
     TOKEN_NOT_VALID: 401,
@@ -55,3 +55,10 @@ InjectCodes({
 Then if you create a new error `const error = Interference('Empty document', 'EMPTY_DOCUMENT', { dupe: '4350394' })` it you will be mapped to 400 HTTP error inside `error.statutsCode`.
 
 `InjectCodes` must be called only once inside your project since it will set internal httpCodes var, that will be used for all future Interference instance.
+
+
+### Referenct to < es6 target
+[Extending built-ins Error](https://github.com/Microsoft/TypeScript/wiki/Breaking-Changes#extending-built-ins-like-error-array-and-map-may-no-longer-work])
+
+
+
