@@ -11,7 +11,7 @@ interface Codes {
 
 const httpCodes: Codes = {}
 
-class InterferenceError extends Error implements Interference {
+export class InterferenceError extends Error implements Interference {
   type: string
   statusCode: number
   details: any
@@ -19,6 +19,7 @@ class InterferenceError extends Error implements Interference {
 
   constructor(message: string, type: string = 'GENERIC_ERROR', details: any = {}, code?) {
     super(message)
+    Object.setPrototypeOf(this, InterferenceError.prototype)
 
     Object.defineProperty(this, 'message', {
       configurable: true,

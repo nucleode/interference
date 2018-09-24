@@ -1,4 +1,4 @@
-import Interference, { getCodes, InjectCodes } from '../src'
+import Interference, { getCodes, InjectCodes, InterferenceError } from '../src'
 
 test('Default empty http codes', () => {
   InjectCodes()
@@ -44,6 +44,10 @@ test('Inject custom error dictionary', () => {
 test('Interference isnstanceOf Error', () => {
   const error = Interference('Test error message')
   expect(error).toBeInstanceOf(Error)
+})
+
+test('Check prototypes', () => {
+  expect(Interference('Test error message')).toBeInstanceOf(InterferenceError)
 })
 
 test('Interference with just a message', () => {
