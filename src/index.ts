@@ -9,7 +9,7 @@ interface Codes {
   [key: string]: number
 }
 
-let httpCodes: Codes = {}
+const httpCodes: Codes = {}
 
 class InterferenceError extends Error implements Interference {
   type: string
@@ -57,10 +57,8 @@ const Interference = (message: string, type?: string, details?: any, code?: numb
 
 export default Interference
 
-export const InjectCodes = (codes?: Codes) => {
-  if (codes) {
-    httpCodes = codes
-  }
+export const InjectCodes = (codes: Codes = {}) => {
+  Object.assign(httpCodes, codes)
 }
 
 export const getCodes = () => httpCodes
