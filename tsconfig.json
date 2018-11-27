@@ -7,10 +7,7 @@
     "outDir": "lib",
     "rootDir": "./src",
     "pretty": true,
-    "noEmitOnError": true,
-    "experimentalDecorators": true,
     "sourceMap": true,
-    "emitDecoratorMetadata": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
     "removeComments": true,
@@ -28,6 +25,6 @@
     "__tests__"
   ],
   "include": [
-    "**/*.ts"
+    "./src/**/*.ts",
   ]
 }

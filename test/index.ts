@@ -1,11 +1,12 @@
+import test from 'ava'
 import Interference, { getCodes, InjectCodes, InterferenceError } from '../src'
 
-test('Default empty http codes', () => {
+test('Default empty http codes', t => {
   InjectCodes()
-  expect(getCodes()).toEqual({})
+  t.deepEqual(getCodes(), {})
 })
 
-test('Inject custom error dictionary', () => {
+test('Inject custom error dictionary', t => {
   InjectCodes({
     INVALID_OBJECT_ID: 400,
     MISSING_OBJECT_ID: 400,
@@ -23,7 +24,7 @@ test('Inject custom error dictionary', () => {
     GENERIC_ERROR: 500,
   })
 
-  expect(getCodes()).toEqual({
+  t.deepEqual(getCodes(), {
     INVALID_OBJECT_ID: 400,
     MISSING_OBJECT_ID: 400,
     EMPTY_DOCUMENT: 400,
@@ -41,44 +42,44 @@ test('Inject custom error dictionary', () => {
   })
 })
 
-test('Interference isnstanceOf Error', () => {
+test('Interference isnstanceOf Error', t => {
   const error = Interference('Test error message')
-  expect(error).toBeInstanceOf(Error)
+  t.true(error instanceof Error)
 })
 
-test('Check prototypes', () => {
-  expect(Interference('Test error message')).toBeInstanceOf(InterferenceError)
+test('Check prototypes', t => {
+  t.true(Interference('Test error message') instanceof InterferenceError)
 })
 
-test('Interference with just a message', () => {
+test('Interference with just a message', t => {
   const error = Interference('Test error message')
-  expect(error.message).toBe('Test error message')
-  expect(error.type).toBe('GENERIC_ERROR')
-  expect(error.details).toEqual({})
-  expect(error.statusCode).toBe(500)
+  t.is(error.message, 'Test error message')
+  t.is(error.type, 'GENERIC_ERROR')
+  t.deepEqual(error.details, {})
+  t.is(error.statusCode, 500)
 })
 
-test('Interference with all but "code" set', () => {
+test('Interference with all but "code" set', t => {
   const error = Interference('Duplicated document', 'DUPLICATED_DOCUMENT', { dupe: '4350394' })
-  expect(error.message).toBe('Duplicated document')
-  expect(error.type).toBe('DUPLICATED_DOCUMENT')
-  expect(error.details.dupe).toBe('4350394')
-  expect(error.statusCode).toBe(409)
+  t.is(error.message, 'Duplicated document')
+  t.is(error.type, 'DUPLICATED_DOCUMENT')
+  t.is(error.details.dupe, '4350394')
+  t.is(error.statusCode, 409)
 })
 
-test('Interference with custom "code"', () => {
+test('Interference with custom "code"', t => {
   const error = Interference('Empty document', 'EMPTY_DOCUMENT', { dupe: '4350394' }, 503)
-  expect(error.message).toBe('Empty document')
-  expect(error.type).toBe('EMPTY_DOCUMENT')
-  expect(error.details.dupe).toBe('4350394')
-  expect(error.statusCode).toBe(503)
+  t.is(error.message, 'Empty document')
+  t.is(error.type, 'EMPTY_DOCUMENT')
+  t.is(error.details.dupe, '4350394')
+  t.is(error.statusCode, 503)
 })
 
-test('Reset Interference httpCodes', () => {
+test('Reset Interference httpCodes', t => {
   InjectCodes()
   const error = Interference('Missing ObjectId', 'MISSING_OBJECT_ID', {}, 400)
-  expect(error.message).toBe('Missing ObjectId')
-  expect(error.type).toBe('MISSING_OBJECT_ID')
-  expect(error.details).toEqual({})
-  expect(error.statusCode).toBe(400)
+  t.is(error.message, 'Missing ObjectId')
+  t.is(error.type, 'MISSING_OBJECT_ID')
+  t.deepEqual(error.details, {})
+  t.is(error.statusCode, 400)
 })
