@@ -8,7 +8,7 @@
   
 [![NPM version](https://img.shields.io/npm/v/interference.svg?style=flat)](https://www.npmjs.com/package/interference)
 [![NPM downloads](https://img.shields.io/npm/dm/interference.svg?style=flat)](https://www.npmjs.com/package/interference) 
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier) 
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)  [![Dependencies Status](https://david-dm.org/greguz/fluido.svg)](https://david-dm.org/greguz/fluido.svg)
 
 </div>
 
