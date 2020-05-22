@@ -5,19 +5,13 @@ interface Interference {
   message: string
 }
 
-interface Codes {
-  [key: string]: number
-}
-
-const httpCodes: Codes = {}
-
 export class InterferenceError extends Error implements Interference {
   type: string
   statusCode: number
   details: any
   message: string
 
-  constructor(message: string, type: string = 'GENERIC_ERROR', details: any = {}, code?) {
+  constructor(message: string, type: string = 'GENERIC_ERROR', details: any = {}, code?: number) {
     super(message)
     Object.setPrototypeOf(this, InterferenceError.prototype)
 
@@ -37,7 +31,7 @@ export class InterferenceError extends Error implements Interference {
 
     this.type = type
     this.details = details
-    this.statusCode = code || httpCodes[type] || 500
+    this.statusCode = code || 500
 
     if (Error.hasOwnProperty('captureStackTrace')) {
       Error.captureStackTrace(this, this.constructor)
@@ -57,9 +51,3 @@ const Interference = (message: string, type?: string, details?: any, code?: numb
   new InterferenceError(message, type, details, code)
 
 export default Interference
-
-export const InjectCodes = (codes: Codes = {}) => {
-  Object.assign(httpCodes, codes)
-}
-
-export const getCodes = () => httpCodes
