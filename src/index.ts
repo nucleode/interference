@@ -1,19 +1,21 @@
-interface Interference {
-  type: string
-  statusCode: number
-  details: any
-  message: string
-}
+const symInterference = Symbol.for('interference')
 
-export class InterferenceError extends Error implements Interference {
-  type: string
-  statusCode: number
-  details: any
-  message: string
+export class Interference extends Error {
+  public type: string
+  public statusCode?: number
+  public details: any
+  public message: string
 
-  constructor(message: string, type: string = 'GENERIC_ERROR', details: any = {}, code?: number) {
+  constructor(
+    message: string,
+    type: string = 'GENERIC_ERROR',
+    details: any = {},
+    statusCode?: number,
+  ) {
     super(message)
-    Object.setPrototypeOf(this, InterferenceError.prototype)
+    Object.setPrototypeOf(this, Interference.prototype)
+
+    Object.defineProperty(this, symInterference, { value: true })
 
     Object.defineProperty(this, 'message', {
       configurable: true,
@@ -31,7 +33,7 @@ export class InterferenceError extends Error implements Interference {
 
     this.type = type
     this.details = details
-    this.statusCode = code || 500
+    this.statusCode = statusCode
 
     if (Error.hasOwnProperty('captureStackTrace')) {
       Error.captureStackTrace(this, this.constructor)
@@ -47,7 +49,15 @@ export class InterferenceError extends Error implements Interference {
   }
 }
 
-const Interference = (message: string, type?: string, details?: any, code?: number): Interference =>
-  new InterferenceError(message, type, details, code)
+export function isInterference(value: any): value is Interference {
+  return typeof value === 'object' && value !== null ? value[symInterference] === true : false
+}
 
-export default Interference
+export default function InterferenceFactory(
+  message: string,
+  type?: string,
+  details?: any,
+  statusCode?: number,
+): Interference {
+  return new Interference(message, type, details, statusCode)
+}

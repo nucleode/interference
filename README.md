@@ -23,7 +23,13 @@ npm install interference
 ## Usage
 
 ```javascript
-import Interference from 'interference' // or const Interference = require('interference').default
+import Interference, { isInterference } from 'interference'
+
+const err = Interference('Good news everyone', 'FUTURAMA')
+
+if (isInterference(err) && err.type === 'FUTURAMA') {
+  console.log('We have a special delivery today')
+}
 ```
 
 <b>Factory</b>
@@ -31,34 +37,5 @@ import Interference from 'interference' // or const Interference = require('inte
 (message: string, type?: string, details?: any, code?: number): Interference
 ```
 
-You can inject custom HTTP codes to map internal type errors to HTTP errors inside your main index.ts/index.js.
-
-```javascript
-InjectCodes({
-    INVALID_OBJECT_ID: 400,
-    MISSING_OBJECT_ID: 400,
-    EMPTY_DOCUMENT: 400,
-    DOCUMENT_VALIDATION_ERROR: 400,
-    MISSING_UNIQUE_KEY: 400,
-    MISSING_AUTH_DATA: 400,
-    CREDENTIALS_NOT_VALID: 400,
-    MISSING_MANDATORY_PRAMETER: 400,
-    TOKEN_NOT_VALID: 401,
-    DOCUMENT_NOT_FOUND: 404,
-    INCOMPATIBLE_CHANGE_STATUS: 409,
-    DUPLICATED_DOCUMENT: 409,
-    REMOTE_UNREACHABLE: 503,
-    GENERIC_ERROR: 500,
-  })
-  ```
-  
-Then if you create a new error `const error = Interference('Empty document', 'EMPTY_DOCUMENT', { dupe: '4350394' })` it you will be mapped to 400 HTTP error inside `error.statutsCode`.
-
-`InjectCodes` must be called only once inside your project since it will set internal httpCodes var, that will be used for all future Interference instance.
-
-
 ### Referenct to < es6 target
 [Extending built-ins Error](https://github.com/Microsoft/TypeScript/wiki/Breaking-Changes#extending-built-ins-like-error-array-and-map-may-no-longer-work])
-
-
-
