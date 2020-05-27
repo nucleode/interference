@@ -6,7 +6,12 @@ export class Interference extends Error {
   public details: any
   public message: string
 
-  constructor(message: string, type: string = 'GENERIC_ERROR', details: any = {}, statusCode?: number) {
+  constructor(
+    message: string,
+    type: string = 'GENERIC_ERROR',
+    details: any = {},
+    statusCode?: number,
+  ) {
     super(message)
     Object.setPrototypeOf(this, Interference.prototype)
 
@@ -44,12 +49,15 @@ export class Interference extends Error {
   }
 }
 
-export function isInterference (value: any): value is Interference {
-  return typeof value === 'object' && value !== null
-    ? value[symInterference] === true
-    : false
+export function isInterference(value: any): value is Interference {
+  return typeof value === 'object' && value !== null ? value[symInterference] === true : false
 }
 
-export default function InterferenceFactory (message: string, type?: string, details?: any, statusCode?: number): Interference {
+export default function InterferenceFactory(
+  message: string,
+  type?: string,
+  details?: any,
+  statusCode?: number,
+): Interference {
   return new Interference(message, type, details, statusCode)
 }
