@@ -1,17 +1,19 @@
 const symInterference = Symbol.for('interference')
 
+interface Options {
+  message: string
+  type: string
+  details?: any
+  statusCode?: number
+}
+
 export class Interference extends Error {
   public type: string
   public statusCode?: number
   public details: any
   public message: string
 
-  constructor(
-    message: string,
-    type: string = 'GENERIC_ERROR',
-    details: any = {},
-    statusCode?: number,
-  ) {
+  constructor({ message, type, details = {}, statusCode }: Options) {
     super(message)
     Object.setPrototypeOf(this, Interference.prototype)
 
@@ -53,11 +55,11 @@ export function isInterference(value: any): value is Interference {
   return typeof value === 'object' && value !== null ? value[symInterference] === true : false
 }
 
-export default function InterferenceFactory(
-  message: string,
-  type?: string,
-  details?: any,
-  statusCode?: number,
-): Interference {
-  return new Interference(message, type, details, statusCode)
+export default function InterferenceFactory({
+  message,
+  type,
+  details,
+  statusCode,
+}: Options): Interference {
+  return new Interference({ message, type, details, statusCode })
 }
