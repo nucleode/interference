@@ -25,7 +25,7 @@ npm install interference
 ```javascript
 import Interference, { isInterference } from 'interference'
 
-const err = Interference('Good news everyone', 'FUTURAMA')
+const err = Interference({ message: 'Good news everyone', type: 'FUTURAMA' })
 
 if (isInterference(err) && err.type === 'FUTURAMA') {
   console.log('We have a special delivery today')
