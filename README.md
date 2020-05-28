@@ -32,9 +32,9 @@ if (isInterference(err) && err.type === 'FUTURAMA') {
 }
 ```
 
-<b>Factory</b>
+<b>Factory Signature</b>
 ```javascript
-(message: string, type?: string, details?: any, code?: number): Interference
+({ message: string, type?: string, details?: any, code?: number }): Interference
 ```
 
 ### Referenct to < es6 target
