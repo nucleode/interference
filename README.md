@@ -25,16 +25,16 @@ npm install interference
 ```javascript
 import Interference, { isInterference } from 'interference'
 
-const err = Interference('Good news everyone', 'FUTURAMA')
+const err = Interference({ message: 'Good news everyone', type: 'FUTURAMA' })
 
 if (isInterference(err) && err.type === 'FUTURAMA') {
   console.log('We have a special delivery today')
 }
 ```
 
-<b>Factory</b>
+<b>Factory Signature</b>
 ```javascript
-(message: string, type?: string, details?: any, code?: number): Interference
+({ message: string, type?: string, details?: any, code?: number }): Interference
 ```
 
 ### Referenct to < es6 target
