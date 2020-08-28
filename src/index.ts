@@ -49,6 +49,15 @@ export class Interference extends Error {
       writable: true,
     })
   }
+
+  public toJSON() {
+    return {
+      type: this.type,
+      message: this.message,
+      details: this.details,
+      statusCode: this.statusCode
+    }
+  }
 }
 
 export function isInterference(value: any): value is Interference {
