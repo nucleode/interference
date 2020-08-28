@@ -49,17 +49,21 @@ export class Interference extends Error {
       writable: true,
     })
   }
+
+  public toJSON() {
+    return {
+      type: this.type,
+      message: this.message,
+      details: this.details,
+      statusCode: this.statusCode
+    }
+  }
 }
 
 export function isInterference(value: any): value is Interference {
   return typeof value === 'object' && value !== null ? value[symInterference] === true : false
 }
 
-export default function InterferenceFactory({
-  message,
-  type,
-  details,
-  statusCode,
-}: Options): Interference {
-  return new Interference({ message, type, details, statusCode })
+export default function InterferenceFactory(options: Options): Interference {
+  return new Interference(options)
 }
