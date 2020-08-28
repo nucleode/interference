@@ -55,7 +55,7 @@ export class Interference extends Error {
       type: this.type,
       message: this.message,
       details: this.details,
-      statusCode: this.statusCode
+      statusCode: this.statusCode,
     }
   }
 }
